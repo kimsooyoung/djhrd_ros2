@@ -21,6 +21,9 @@ def generate_launch_description():
     # Prepare Robot State Publisher Params
     description_pkg_path = os.path.join(get_package_share_directory('fusionbot_description'))
     gazebo_model_path = os.path.join(description_pkg_path, 'models')
+    
+    world_pkg = os.path.join(get_package_share_directory('fusionbot_gazebo'))
+    world_path = os.path.join(world_pkg, 'world', 'gazebo_ros_elevator_demo.world')
 
     if 'GAZEBO_MODEL_PATH' in os.environ:
         os.environ['GAZEBO_MODEL_PATH'] += ":" + gazebo_model_path
