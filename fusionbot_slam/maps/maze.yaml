@@ -1,4 +1,4 @@
-image: /home/kimsooyoung/djhrd_ws/src/djhrd_ros2/maze.pgm
+image: maze.pgm
 mode: trinary
 resolution: 0.05
 origin: [-0.822, -4.13, 0]
