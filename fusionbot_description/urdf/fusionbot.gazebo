@@ -12,7 +12,7 @@
 <gazebo reference="camera_link">
   <sensor name="zed_camera_left_sensor" type="camera">
     <update_rate>30.0</update_rate>
-    <visualize>true</visualize>
+    <visualize>false</visualize>
     <always_on>1</always_on>
     <camera name="front_camera">
       <!-- math.atan(320 / 687.8065795898438) * 2 -->
