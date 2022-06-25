@@ -23,3 +23,15 @@ https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-IMU-Sens
 [async_slam_toolbox_node-1] [INFO] [1656139660.748566200] [map_saver]: Map saved successfully
 [async_slam_toolbox_node-1] [INFO] [1656139660.748704100] [map_saver]: Destroying
 ```
+
+카페 돌릴때는 마찰계수 수정해야 함
+
+```
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.1</mu1>
+  <mu2>0.1</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+```

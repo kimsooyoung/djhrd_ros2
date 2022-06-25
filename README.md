@@ -29,7 +29,13 @@ ros2 launch fusionbot_amcl amcl.launch.py
 
 # nav2
 ros2 launch fusionbot_nav bringup_launch.py
+
+# caffee world
+# urdf 마찰 수정해야 함
+ros2 launch fusionbot_gazebo caffee_world.launch.py
 ```
+
+
 
 sudo apt install ros-foxy-gazebo-ros-pkgs
 sudo apt install ros-foxy-slam-toolbox
@@ -38,7 +44,9 @@ sudo apt install ros-foxy-slam-toolbox
 
 [] 여러 가제보 object 추가하는거 할까 말까
 [] Docker로 하면서 처음부터 패키지 전부 조사
+[] 필요없는 코드 모두 지우기
 [] 
+
 
 
 강의 전 조사
