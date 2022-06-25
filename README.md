@@ -5,6 +5,7 @@ cbp fusionbot_description && rosfoxy
 cbp fusionbot_gazebo && rosfoxy
 cbp fusionbot_slam && rosfoxy
 cbp fusionbot_amcl && rosfoxy
+cbp fusionbot_nav && rosfoxy
 ```
 
 ```
