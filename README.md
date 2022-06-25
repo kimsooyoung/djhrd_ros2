@@ -25,7 +25,10 @@ ros2 launch fusionbot_gazebo run_my_world.launch.py
 ros2 launch fusionbot_slam gazebo_slam_toolbox.launch.py
 
 # amcl
+ros2 launch fusionbot_amcl amcl.launch.py
 
+# nav2
+ros2 launch fusionbot_nav bringup_launch.py
 ```
 
 sudo apt install ros-foxy-gazebo-ros-pkgs

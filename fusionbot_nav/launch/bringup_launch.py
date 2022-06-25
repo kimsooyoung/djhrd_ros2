@@ -34,8 +34,8 @@ def generate_launch_description():
     
     my_param_dir = os.path.join(fb_nav_pkg, 'param')
     
-    # my_param_file = 'src_dwb_params.yaml'
-    my_param_file = 'fb_regulated_pure_pursuit.yaml'
+    my_param_file = 'fb_dwb_params.yaml'
+    # my_param_file = 'fb_regulated_pure_pursuit.yaml'
     
     my_bt_file = 'navigate_w_replanning_and_recovery.xml'
 
