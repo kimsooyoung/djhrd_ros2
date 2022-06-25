@@ -4,6 +4,7 @@
 cbp fusionbot_description && rosfoxy
 cbp fusionbot_gazebo && rosfoxy
 cbp fusionbot_slam && rosfoxy
+cbp fusionbot_amcl && rosfoxy
 ```
 
 ```
@@ -22,6 +23,7 @@ ros2 launch fusionbot_gazebo run_my_world.launch.py
 ros2 launch fusionbot_gazebo run_my_world.launch.py
 ros2 launch fusionbot_slam gazebo_slam_toolbox.launch.py
 
+# amcl
 
 ```
 
