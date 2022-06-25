@@ -3,6 +3,7 @@
 ```
 cbp fusionbot_description && rosfoxy
 cbp fusionbot_gazebo && rosfoxy
+cbp fusionbot_slam && rosfoxy
 ```
 
 ```
@@ -17,10 +18,15 @@ ros2 launch fusionbot_gazebo run_my_world.launch.py
 ```
 
 ```
+# slam
+ros2 launch fusionbot_gazebo run_my_world.launch.py
+ros2 launch fusionbot_slam gazebo_slam_toolbox.launch.py
+
 
 ```
 
 sudo apt install ros-foxy-gazebo-ros-pkgs
+sudo apt install ros-foxy-slam-toolbox
 
 ![image](https://user-images.githubusercontent.com/12381733/175758221-a84f39b5-68e9-4add-bcd3-a987234bf6b0.png)
 
