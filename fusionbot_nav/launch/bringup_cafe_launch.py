@@ -34,12 +34,14 @@ def generate_launch_description():
     
     my_param_dir = os.path.join(fb_nav_pkg, 'param')
     
-    my_param_file = 'fb_dwb_params.yaml'
+    my_param_file = 'fb_cafe_dwb.yaml'
     
     my_bt_file = 'navigate_w_replanning_and_recovery.xml'
 
     my_map_dir = os.path.join(fb_slam_pkg, 'maps')
-    my_map_file = 'maze.yaml'
+
+    my_map_file = 'cafe_map.yaml'
+    # my_map_file = 'cafe_map_editted.yaml'
 
     rviz_config = os.path.join(fb_nav_pkg, 'rviz', 'nav2_default_view.rviz')
 

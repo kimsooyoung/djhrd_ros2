@@ -208,8 +208,8 @@
   </gazebo>
   <gazebo reference="base_link">
     <material>Gazebo/Silver</material>
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
     <selfCollide>true</selfCollide>
     <gravity>true</gravity>
   </gazebo>

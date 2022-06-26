@@ -108,7 +108,7 @@ controller_server:
     goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 1.0
+      yaw_goal_tolerance: 0.25
       stateful: True
     # DWB parameters
     FollowPath:
@@ -120,18 +120,18 @@ controller_server:
       max_vel_y: 0.0
       max_vel_theta: 1.5
       min_speed_xy: 0.0
-      max_speed_xy: 0.5
-      min_speed_theta: 0.1
+      max_speed_xy: 1.0
+      min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
-      acc_lim_x: 2.5
+      acc_lim_x: 0.5
       acc_lim_y: 0.0
-      acc_lim_theta: 1.2
+      acc_lim_theta: 1.0
       decel_lim_x: -0.5
       decel_lim_y: 0.0
-      decel_lim_theta: -1.2
+      decel_lim_theta: -1.0
       vx_samples: 20
-      vy_samples: 5
+      vy_samples: 0
       vtheta_samples: 20
       sim_time: 1.7
       linear_granularity: 0.05
@@ -148,7 +148,7 @@ controller_server:
       PathAlign.forward_point_distance: 0.1
       GoalAlign.forward_point_distance: 0.1
       PathDist.scale: 50.0
-      GoalDist.scale: 0.0
+      GoalDist.scale: 10.0
       RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
@@ -174,7 +174,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.2
+        inflation_radius: 0.25
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
