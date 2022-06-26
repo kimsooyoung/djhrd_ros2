@@ -86,7 +86,7 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='src_ackermann'>
+    <model name='fusionbot'>
       <link name='base_footprint'>
         <inertial>
           <pose>0.015386 0 0.069858 0 -0 0</pose>
@@ -782,7 +782,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='src_ackermann'>
+      <model name='fusionbot'>
         <pose>-3.6e-05 -0.000113 -0 -0.000256 -1e-06 -0.000281</pose>
         <scale>1 1 1</scale>
         <link name='base_footprint'>
