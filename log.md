@@ -35,3 +35,7 @@ https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-IMU-Sens
   <gravity>true</gravity>
 </gazebo>
 ```
+
+수정 => 기존 urdf 삭제 => 
+cbp fusionbot_description && rosfoxy
+ros2 launch fusionbot_gazebo run_my_world.launch.py
