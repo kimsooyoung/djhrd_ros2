@@ -26,18 +26,15 @@ def generate_launch_description():
 
     print(ansi("yellow"), "If it's your 1st time to download Gazebo model on your computer, it may take few minutes to finish.", ansi("reset"))
 
-    # Prepare Robot State Publisher Params
-    urdf_file = os.path.join(description_pkg_path, 'urdf', 'fusionbot_description.urdf')
-
-    doc = xacro.parse(open(urdf_file))
-    xacro.process_doc(doc)
-
     # Joint State Publisher
     joint_state_publisher_gui = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher_gui'
     )
+
+    # Prepare Robot State Publisher Params
+    urdf_file = os.path.join(description_pkg_path, 'urdf', 'fusionbot_description.urdf')
 
     # Robot State Publisher
     robot_state_publisher = Node(
