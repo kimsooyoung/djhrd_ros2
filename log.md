@@ -39,3 +39,31 @@ https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-IMU-Sens
 수정 => 기존 urdf 삭제 => 
 cbp fusionbot_description && rosfoxy
 ros2 launch fusionbot_gazebo run_my_world.launch.py
+
+turtlebot3 waffle 매개변수 참고 기존 것으로 하면 success가 나오질 않았음
+
+https://github.com/ROBOTIS-GIT/turtlebot3/blob/foxy-devel/turtlebot3_navigation2/param/waffle.yaml
+
+```
+      # BaseObstacle.scale: 0.04
+      # PathAlign.scale: 50.0
+      # GoalAlign.scale: 10.0
+      # PathAlign.forward_point_distance: 0.1
+      # GoalAlign.forward_point_distance: 0.1
+      # PathDist.scale: 50.0
+      # GoalDist.scale: 0.0
+      # RotateToGoal.scale: 32.0
+      # RotateToGoal.slowing_factor: 5.0
+      # RotateToGoal.lookahead_time: -1.0
+      BaseObstacle.scale: 0.02
+      PathAlign.scale: 32.0
+      GoalAlign.scale: 24.0
+      PathAlign.forward_point_distance: 0.1
+      GoalAlign.forward_point_distance: 0.1
+      PathDist.scale: 32.0
+      GoalDist.scale: 24.0
+      RotateToGoal.scale: 32.0
+      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.lookahead_time: -1.0
+```
+
