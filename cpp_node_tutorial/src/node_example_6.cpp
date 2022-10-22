@@ -29,11 +29,11 @@ private:
    * 
    */
   void timer_callback() {
-    RCLCPP_DEBUG(this->get_logger(), "==== Hello ROS 2 : %d", count);
-    RCLCPP_INFO(this->get_logger(), "==== Hello ROS 2 : %d", count);
-    RCLCPP_WARN(this->get_logger(), "==== Hello ROS 2 : %d", count);
-    RCLCPP_ERROR(this->get_logger(), "==== Hello ROS 2 : %d", count);
-    RCLCPP_FATAL(this->get_logger(), "==== Hello ROS 2 : %d", count);
+    RCLCPP_DEBUG(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
+    RCLCPP_INFO(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
+    RCLCPP_WARN(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
+    RCLCPP_ERROR(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
+    RCLCPP_FATAL(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
     count++;
   }
 

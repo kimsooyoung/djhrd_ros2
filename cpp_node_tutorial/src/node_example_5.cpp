@@ -29,7 +29,7 @@ private:
    * 
    */
   void timer_callback() {
-    RCLCPP_INFO(this->get_logger(), "==== Hello ROS 2 : %d", count);
+    RCLCPP_INFO(this->get_logger(), "==== Hello ROS 2 : %d ====", count);
     count++;
   }
 
@@ -37,6 +37,7 @@ public:
   NodeClass() : Node("example_node_5") {
     timer = this->create_wall_timer(
       std::chrono::milliseconds(200),
+      // timer_callback,
       std::bind(&NodeClass::timer_callback, this)
     );
   }
