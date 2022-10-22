@@ -21,8 +21,7 @@ from turtlesim.srv import TeleportAbsolute
 
 from custom_interfaces.srv import TurtleJail
 
-
-class TurtleJailNode(Node):
+class TurtleJailNode(Node):  
     """Make jail in turtlesim.
 
     If turtle escape from virtual jail
@@ -63,8 +62,9 @@ class TurtleJailNode(Node):
         self.jail_width = 6.0
         self.jail_height = 6.0
 
+    # Respawn Turtle in center position
     def send_request(self):
-        """Service Clinet request fuction"""
+        """Service Client request fuction"""
         self.request_srv.x = 6.0
         self.request_srv.y = 6.0
         self.request_srv.theta = self.cur_theta

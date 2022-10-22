@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(cpp_service_tutorial)
+project(custom_interfaces)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -15,11 +15,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-find_package(rclcpp REQUIRED)
-find_package(std_srvs REQUIRED)
-find_package(turtlesim REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(custom_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -38,25 +34,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# 작성한 코드들을 빌드합니다.
-add_executable(turtle_spawn_client src/turtle_spawn.cpp)
-ament_target_dependencies(turtle_spawn_client rclcpp turtlesim)
-
-add_executable(turtle_circle_server src/turtle_circle_server.cpp)
-ament_target_dependencies(turtle_circle_server rclcpp geometry_msgs std_srvs)
-
-add_executable(turtle_circle_server_advanced src/turtle_circle_server_advanced.cpp)
-ament_target_dependencies(turtle_circle_server_advanced rclcpp geometry_msgs custom_interfaces)
-
-
-# 빌드 완료된 실행 프로그램들은 아래 폴더에 위치합니다.
-install(
-  TARGETS
-    turtle_spawn_client
-    turtle_circle_server
-    turtle_circle_server_advanced
-  DESTINATION 
-    lib/${PROJECT_NAME}
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/CircleTurtle.srv"
+  "srv/TurtleJail.srv"
 )
 
 ament_package()

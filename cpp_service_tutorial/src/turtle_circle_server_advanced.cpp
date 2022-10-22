@@ -18,26 +18,26 @@
 #include <iostream>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_srvs/srv/set_bool.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "custom_interfaces/srv/circle_turtle.hpp"
 
-static double MOVING_TIME = 7.0;
-
-using SetBool = std_srvs::srv::SetBool;
+using CircleTurtle = custom_interfaces::srv::CircleTurtle;
 using Twist = geometry_msgs::msg::Twist;
 
 /**
- * std_srvs::srv::SetBool Description
+ * custom_interfaces/srv/CircleTurtle srv Description.
  * 
- * bool data # e.g. for hardware enabling / disabling
- * --- 
- * bool success   # indicate successful run of triggered service 
- * string message # informational, e.g. for error messages
+ * float32 time   # Turtle will turn during this seconds
+ * ---
+ * bool success   # Success or Not
+ * string message # Any optional message
  */
 
-class TurtleCircleNode : public rclcpp::Node {
+class TurtleCircleNodeAdvanced : public rclcpp::Node {
 private:
-  rclcpp::Service<SetBool>::SharedPtr bool_client;
+  static float moving_time;
+
+  rclcpp::Service<CircleTurtle>::SharedPtr circle_turtle_client;
   rclcpp::Publisher<Twist>::SharedPtr twist_publisher;
 
   Twist twist_msg = geometry_msgs::msg::Twist();
@@ -50,8 +50,7 @@ private:
     auto t_now = this->now();
     auto t_interval = (t_now - t_start).seconds();
 
-
-    while (t_interval < MOVING_TIME) {
+    while (t_interval < moving_time) {
       t_now = this->now();
       twist_publisher->publish(twist_msg);
       
@@ -69,31 +68,32 @@ private:
     twist_publisher->publish(twist_msg);
   }
 
-  void server_callback(const std::shared_ptr<SetBool::Request> request,
-                      const std::shared_ptr<SetBool::Response> response){
-    if (request->data) {
-      turtle_circle();
-    }
+  void server_callback(const std::shared_ptr<CircleTurtle::Request> request,
+                      const std::shared_ptr<CircleTurtle::Response> response){
+    moving_time = request->time;
+    turtle_circle();
 
     response->success = true;
     response->message = "Turtle successfully drawed Circle";
   }
 
 public:
-  TurtleCircleNode() : Node("turtle_circle_server"){
+  TurtleCircleNodeAdvanced() : Node("turtle_circle_server_advanced"){
     twist_publisher = this->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 10);
-    bool_client = this->create_service<SetBool>(
-      "turtle_circle",
-      std::bind(&TurtleCircleNode::server_callback, this, std::placeholders::_1, std::placeholders::_2)
+    circle_turtle_client = this->create_service<CircleTurtle>(
+      "turtle_circle_advanced",
+      std::bind(&TurtleCircleNodeAdvanced::server_callback, this, std::placeholders::_1, std::placeholders::_2)
     );
     RCLCPP_INFO(this->get_logger(), "Turtle Turning Server Started, Waiting for Request...");
   }
 };
 
+float TurtleCircleNodeAdvanced::moving_time = 0.0;
+
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
 
-  auto node = std::make_shared<TurtleCircleNode>();
+  auto node = std::make_shared<TurtleCircleNodeAdvanced>();
   rclcpp::spin(node);
 
   rclcpp::shutdown();
