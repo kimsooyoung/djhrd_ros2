@@ -21,7 +21,7 @@
 #include "std_srvs/srv/set_bool.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 
-static double MOVING_TIME = 5.0;
+static double MOVING_TIME = 7.0;
 
 using SetBool = std_srvs::srv::SetBool;
 using Twist = geometry_msgs::msg::Twist;
@@ -43,6 +43,9 @@ private:
   Twist twist_msg = geometry_msgs::msg::Twist();
 
   void turtle_circle(){
+
+    std::cout << "request->data" << std::endl;
+
     twist_msg.linear.x = 2.0;
     twist_msg.angular.z = 1.0;
 
@@ -64,6 +67,7 @@ private:
   void server_callback(const std::shared_ptr<SetBool::Request> request,
                       const std::shared_ptr<SetBool::Response> response){
 
+    std::cout << request->data << std::endl;
     if (request->data) {
       turtle_circle();
     }
@@ -74,13 +78,13 @@ private:
 
 public:
   TurtleCircleNode() : Node("turtle_circle_server"){
-    
+    twist_publisher = this->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 10);
     bool_client = this->create_service<SetBool>(
       "turtle_circle",
-      server_callback
+      // server_callback
+      std::bind(&TurtleCircleNode::server_callback, this, std::placeholders::_1, std::placeholders::_2)
     );
     RCLCPP_INFO(this->get_logger(), "Turtle Turning Server Started, Waiting for Request...");
-  
   }
 };
 
