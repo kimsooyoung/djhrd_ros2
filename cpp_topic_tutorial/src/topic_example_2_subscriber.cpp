@@ -26,22 +26,24 @@ Listen to pose of turtle in the turtlesim.
 #include "rclcpp/rclcpp.hpp"
 #include "turtlesim/msg/pose.hpp"
 
+using Pose = turtlesim::msg::Pose;
+
 /**
  * @brief Receive turtle1's pose then create console log.
  * 
  */
 class TurtlePoseSubNode : public rclcpp::Node {
 private:
-  rclcpp::Subscription<turtlesim::msg::Pose>::SharedPtr pose_subscriber;
+  rclcpp::Subscription<Pose>::SharedPtr pose_subscriber;
 
-  void sub_callback(const turtlesim::msg::Pose::SharedPtr msg) {
+  void sub_callback(const Pose::SharedPtr msg) {
     RCLCPP_INFO(this->get_logger(), "x: %.3f/ y: %.3f/ theta: %.3f/ lin_vel: %.3f, ang_vel: %.3f",
       msg->x, msg->y, msg->theta, msg->linear_velocity, msg->angular_velocity);
   }
 
 public:
   TurtlePoseSubNode() : Node("turtlepose_sub_node") {
-    pose_subscriber = this->create_subscription<turtlesim::msg::Pose>(
+    pose_subscriber = this->create_subscription<Pose>(
       "turtle1/pose", 10,
       std::bind(&TurtlePoseSubNode::sub_callback, this, std::placeholders::_1)
     );

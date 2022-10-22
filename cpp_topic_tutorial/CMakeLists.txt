@@ -51,6 +51,7 @@ ament_target_dependencies(mimic_node rclcpp geometry_msgs)
 install(
   TARGETS
     topic_pub_node
+    topic_sub_node
     mimic_node
   DESTINATION 
     lib/${PROJECT_NAME}
