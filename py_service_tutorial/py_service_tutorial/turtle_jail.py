@@ -33,7 +33,7 @@ class TurtleJailNode(Node):
 
         You must type name of the node in inheritanced initializer.
         """
-        super().__init__('turtlepose_sub_node')
+        super().__init__('turtle_jail_node')
 
         # Create Turtle teleport client
         self.client = self.create_client(TeleportAbsolute, 'turtle1/teleport_absolute')

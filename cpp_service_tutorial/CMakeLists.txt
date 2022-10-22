@@ -48,10 +48,14 @@ ament_target_dependencies(turtle_circle_server rclcpp geometry_msgs std_srvs)
 add_executable(turtle_circle_server_advanced src/turtle_circle_server_advanced.cpp)
 ament_target_dependencies(turtle_circle_server_advanced rclcpp geometry_msgs custom_interfaces)
 
+add_executable(turtle_jail src/turtle_jail.cpp)
+ament_target_dependencies(turtle_jail rclcpp turtlesim custom_interfaces)
+
 
 # 빌드 완료된 실행 프로그램들은 아래 폴더에 위치합니다.
 install(
   TARGETS
+    turtle_jail
     turtle_spawn_client
     turtle_circle_server
     turtle_circle_server_advanced

@@ -12,15 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <cmath>
+#include <memory>
 #include <chrono>
 #include <cstdlib>
-#include <memory>
-#include <iostream>
 
 #include "rclcpp/rclcpp.hpp"
 #include "turtlesim/msg/pose.hpp"
 #include "turtlesim/srv/teleport_absolute.hpp"
 #include "custom_interfaces/srv/turtle_jail.hpp"
+
+using namespace std::chrono_literals;
 
 using Pose = turtlesim::msg::Pose;
 using TurtleJail = custom_interfaces::srv::TurtleJail;
@@ -37,58 +39,71 @@ using TeleportAbsolute = turtlesim::srv::TeleportAbsolute;
 
 class TurtleJailNode : public rclcpp::Node {
 private:
-  static float moving_time;
+  float cur_theta = 0.0;
 
-  rclcpp::Service<CircleTurtle>::SharedPtr circle_turtle_client;
-  rclcpp::Publisher<Twist>::SharedPtr twist_publisher;
+  float jail_width = 6.0;
+  float jail_height = 6.0;
 
-  Twist twist_msg = geometry_msgs::msg::Twist();
+  rclcpp::Client<TeleportAbsolute>::SharedPtr teleport_client;
+  rclcpp::Service<TurtleJail>::SharedPtr jail_server;
+  rclcpp::Subscription<Pose>::SharedPtr pose_subscriber;
 
-  void turtle_circle(){
-    twist_msg.linear.x = 2.0;
-    twist_msg.angular.z = 1.0;
+  TeleportAbsolute::Request::SharedPtr teleport_request = std::make_shared<TeleportAbsolute::Request>();
 
-    auto t_start = this->now();
-    auto t_now = this->now();
-    auto t_interval = (t_now - t_start).seconds();
+  void server_callback(const std::shared_ptr<TurtleJail::Request> request,
+                      const std::shared_ptr<TurtleJail::Response> response){
+    jail_width = request->width;
+    jail_height = request->height;
 
-    while (t_interval < moving_time) {
-      t_now = this->now();
-      twist_publisher->publish(twist_msg);
-      
-      if( (int)(t_interval * 1000) % 1000 == 0)
-        RCLCPP_INFO(this->get_logger(), "%.2f Seconds Passed", t_interval);
-      
-      t_interval = (t_now - t_start).seconds();
-    }
-
-    twist_msg.linear.x = 0.0;
-    twist_msg.angular.z = 0.0;
-
-    twist_publisher->publish(twist_msg);
-  }
-
-  void server_callback(const std::shared_ptr<CircleTurtle::Request> request,
-                      const std::shared_ptr<CircleTurtle::Response> response){
-    moving_time = request->time;
-    turtle_circle();
+    RCLCPP_INFO(this->get_logger(), "Jail Size Update to %f / %f", jail_width, jail_height);
 
     response->success = true;
-    response->message = "Turtle successfully drawed Circle";
+  }
+
+  auto send_request(){
+    teleport_request->x = 6.0;
+    teleport_request->y = 6.0;
+    teleport_request->theta = cur_theta;
+
+    return teleport_client->async_send_request(teleport_request);
+  }
+
+  void sub_callback(const Pose::SharedPtr msg) {
+    if(abs(msg->x - 6.0) > jail_width || abs(msg->y - 6.0) > jail_height){
+      cur_theta = msg->theta;
+      RCLCPP_INFO(this->get_logger(), "You can't go out Turtle! :(");
+      send_request();
+    }
   }
 
 public:
   TurtleJailNode() : Node("turtle_circle_server_advanced"){
-    twist_publisher = this->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 10);
-    circle_turtle_client = this->create_service<CircleTurtle>(
-      "turtle_circle_advanced",
+    // service client init
+    teleport_client = this->create_client<TeleportAbsolute>("turtle1/teleport_absolute");
+
+    while (!teleport_client->wait_for_service(1s)) {
+      if (!rclcpp::ok()) {
+        RCLCPP_ERROR(this->get_logger(),"Interrupted while waiting for the service. Exiting.");
+        exit(0);
+      }
+      RCLCPP_INFO(this->get_logger(), "service not available, waiting again...");
+    }
+
+    // service server init
+    jail_server = this->create_service<TurtleJail>(
+      "turtle_jail_size",
       std::bind(&TurtleJailNode::server_callback, this, std::placeholders::_1, std::placeholders::_2)
     );
-    RCLCPP_INFO(this->get_logger(), "Turtle Turning Server Started, Waiting for Request...");
+
+    // topic subscriber init
+    pose_subscriber = this->create_subscription<Pose>(
+      "turtle1/pose", 10,
+      std::bind(&TurtleJailNode::sub_callback, this, std::placeholders::_1)
+    );
+
+    RCLCPP_INFO(this->get_logger(), "Turtle Jail Server Started, Waiting for Request...");
   }
 };
-
-float TurtleJailNode::moving_time = 0.0;
 
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);

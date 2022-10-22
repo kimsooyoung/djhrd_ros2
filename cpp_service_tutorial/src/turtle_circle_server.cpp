@@ -37,7 +37,7 @@ using Twist = geometry_msgs::msg::Twist;
 
 class TurtleCircleNode : public rclcpp::Node {
 private:
-  rclcpp::Service<SetBool>::SharedPtr bool_client;
+  rclcpp::Service<SetBool>::SharedPtr bool_server;
   rclcpp::Publisher<Twist>::SharedPtr twist_publisher;
 
   Twist twist_msg = geometry_msgs::msg::Twist();
@@ -82,7 +82,7 @@ private:
 public:
   TurtleCircleNode() : Node("turtle_circle_server"){
     twist_publisher = this->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 10);
-    bool_client = this->create_service<SetBool>(
+    bool_server = this->create_service<SetBool>(
       "turtle_circle",
       std::bind(&TurtleCircleNode::server_callback, this, std::placeholders::_1, std::placeholders::_2)
     );
