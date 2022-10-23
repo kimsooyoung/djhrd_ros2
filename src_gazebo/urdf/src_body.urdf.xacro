@@ -3,8 +3,8 @@
 
   <xacro:include filename="$(find src_gazebo)/urdf/materials.xacro" />
   <xacro:include filename="$(find src_gazebo)/urdf/macros.xacro" />
+  <xacro:include filename="$(find src_gazebo)/urdf/src_body.gazebo" />
   <!-- <xacro:include filename="$(find src_gazebo)/urdf/src_body.trans" /> -->
-  <!-- <xacro:include filename="$(find src_gazebo)/urdf/src_body.gazebo" /> -->
 
   <link name="base_link">
     <inertial>
@@ -15,14 +15,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -53,14 +53,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -99,14 +99,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -128,14 +128,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -156,14 +156,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -184,14 +184,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/rplidar_a2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/rplidar_a2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/rplidar_a2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/rplidar_a2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -211,14 +211,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://src_gazebo/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="$(find src_gazebo)/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>

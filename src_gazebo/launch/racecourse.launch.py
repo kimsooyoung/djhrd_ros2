@@ -29,14 +29,23 @@ from launch.actions import TimerAction
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+from osrf_pycommon.terminal_color import ansi
+
 import xacro
 
 def generate_launch_description():
 
+    gazebo_model_path = os.path.join(get_package_share_directory('src_gazebo'), 'models')
+    if 'GAZEBO_MODEL_PATH' in os.environ:
+        os.environ['GAZEBO_MODEL_PATH'] += ":" + gazebo_model_path
+    else :
+        os.environ['GAZEBO_MODEL_PATH'] = gazebo_model_path
+    print(ansi("yellow"), "If it's your 1st time to download Gazebo model on your computer, it may take few minutes to finish.", ansi("reset"))
+
     # gazebo
     pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')   
     pkg_path = os.path.join(get_package_share_directory('src_gazebo'))
-    world_path = os.path.join(pkg_path, 'worlds', 'empty_world.world')
+    world_path = os.path.join(pkg_path, 'worlds', 'racecar_course.world')
 
     # launch configuration
     use_rviz = LaunchConfiguration('use_rviz')
@@ -52,7 +61,7 @@ def generate_launch_description():
         launch_arguments={'world': world_path}.items()
     )
 
-    # Start Gazebo client
+    # Start Gazebo client    
     start_gazebo_client_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py'))
     )
@@ -77,14 +86,6 @@ def generate_launch_description():
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher'
-    )
-
-    # rqt robot steering
-    rqt_robot_steering = Node(
-        package='rqt_robot_steering',
-        executable='rqt_robot_steering',
-        name='rqt_robot_steering',
-        output='screen'
     )
 
     # Spawn Robot
@@ -130,7 +131,7 @@ def generate_launch_description():
         parameters=[],
     )
 
-    rviz_config_file = os.path.join(pkg_path, 'rviz', 'gazebo.rviz')
+    rviz_config_file = os.path.join(pkg_path, 'rviz', 'gazebo_racecourse.rviz')
 
     # Launch RViz
     rviz = Node(
@@ -152,7 +153,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         declare_use_rviz,
-
+        
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
@@ -183,7 +184,7 @@ def generate_launch_description():
         #         on_exit=[src_odometry],
         #     )
         # ),
-
+        
         TimerAction(    
             period=7.0,
             actions=[rviz]

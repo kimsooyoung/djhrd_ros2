@@ -67,3 +67,6 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/foxy-devel/turtlebot3_navigation2
       RotateToGoal.lookahead_time: -1.0
 ```
 
+ 'Could not import 'rosidl_typesupport_c' for package 'rmf_task_msgs'
+
+ => sudo apt-get dist-upgrade
