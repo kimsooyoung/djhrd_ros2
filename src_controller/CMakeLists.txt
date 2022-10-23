@@ -18,6 +18,7 @@ endif()
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -39,10 +40,14 @@ endif()
 add_executable(src_gazebo_controller src/src_gazebo_controller.cpp)
 ament_target_dependencies(src_gazebo_controller rclcpp geometry_msgs std_msgs)
 
+add_executable(simple_autonomous src/simple_autonomous.cpp)
+ament_target_dependencies(simple_autonomous rclcpp geometry_msgs sensor_msgs)
+
 # 빌드 완료된 실행 프로그램들은 아래 폴더에 위치합니다.
 install(
   TARGETS
     src_gazebo_controller
+    simple_autonomous
   DESTINATION 
     lib/${PROJECT_NAME}
 )
