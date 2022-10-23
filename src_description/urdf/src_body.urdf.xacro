@@ -26,7 +26,6 @@
       </collision>
     </link>
 
-  <!-- x: 276 y: 83.35 -->
   <link name="lf_wheel_link">
     <inertial>
       <origin xyz="0.0 -1.4645191273516483e-15 1.0536108829867972e-17" rpy="0 0 0"/>
@@ -47,5 +46,13 @@
       </geometry>
     </collision>
   </link>
+
+
+  <joint name="lf_wheel_joint" type="continuous">
+    <origin xyz="0.276 0.0867 0.0" rpy="0 0 1.5707" />
+    <parent link="base_link" />
+    <child link="lf_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
 
 </robot>
