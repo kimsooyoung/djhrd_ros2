@@ -1,29 +1,51 @@
 <?xml version="1.0" ?>
 <robot name="src_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find src_description)/urdf/materials.xacro" />
-<!-- <xacro:include filename="$(find src_description)/urdf/src_body.trans" /> -->
-<!-- <xacro:include filename="$(find src_description)/urdf/src_body.gazebo" /> -->
+  <xacro:include filename="$(find src_description)/urdf/materials.xacro" />
+  <!-- <xacro:include filename="$(find src_description)/urdf/src_body.trans" /> -->
+  <!-- <xacro:include filename="$(find src_description)/urdf/src_body.gazebo" /> -->
 
-<link name="base_link">
-  <inertial>
-    <origin xyz="0.08610442944117125 -0.0010181684635799757 0.03851437758777222" rpy="0 0 0"/>
-    <mass value="2.9675633650363595"/>
-    <inertia ixx="0.011642" iyy="0.035651" izz="0.038255" ixy="0.000148" iyz="-9.3e-05" ixz="0.000342"/>
-  </inertial>
-  <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://src_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://src_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+    <link name="base_link">
+      <inertial>
+        <origin xyz="0.08610442944117125 -0.0010181684635799757 0.03851437758777222" rpy="0 0 0"/>
+        <mass value="2.9675633650363595"/>
+        <inertia ixx="0.011642" iyy="0.035651" izz="0.038255" ixy="0.000148" iyz="-9.3e-05" ixz="0.000342"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://src_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://src_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+  <!-- x: 276 y: 83.35 -->
+  <link name="lf_wheel_link">
+    <inertial>
+      <origin xyz="0.0 -1.4645191273516483e-15 1.0536108829867972e-17" rpy="0 0 0"/>
+      <mass value="0.20069792517970372"/>
+      <inertia ixx="0.00025" iyy="0.00014" izz="0.00014" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://src_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://src_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
 </robot>
