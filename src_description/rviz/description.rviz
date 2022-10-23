@@ -65,7 +65,21 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        lf_steering_hinge_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         lf_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        logi_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -75,7 +89,17 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        rf_steering_hinge_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         rf_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_a2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -90,6 +114,56 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        imu_link:
+          Value: true
+        lf_steering_hinge_link:
+          Value: true
+        lf_wheel_link:
+          Value: true
+        logi_camera_link:
+          Value: true
+        lr_wheel_link:
+          Value: true
+        rf_steering_hinge_link:
+          Value: true
+        rf_wheel_link:
+          Value: true
+        rplidar_a2_link:
+          Value: true
+        rr_wheel_link:
+          Value: true
+      Marker Scale: 0.4000000059604645
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          imu_link:
+            {}
+          lf_steering_hinge_link:
+            lf_wheel_link:
+              {}
+          logi_camera_link:
+            {}
+          lr_wheel_link:
+            {}
+          rf_steering_hinge_link:
+            rf_wheel_link:
+              {}
+          rplidar_a2_link:
+            {}
+          rr_wheel_link:
+            {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -133,25 +207,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.6611332893371582
+      Distance: 1.007994294166565
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.1763368546962738
-        Y: 0.06355516612529755
-        Z: -0.1713341623544693
+        X: 0.15760336816310883
+        Y: -0.04340227320790291
+        Z: -0.019240709021687508
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7803980112075806
+      Pitch: 0.6653980612754822
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.8403986096382141
     Saved: ~
 Window Geometry:
   Displays:
@@ -167,5 +241,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 743
-  Y: 178
+  X: 528
+  Y: 93

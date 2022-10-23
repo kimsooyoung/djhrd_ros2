@@ -67,23 +67,3 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/foxy-devel/turtlebot3_navigation2
       RotateToGoal.lookahead_time: -1.0
 ```
 
-<link name="logi_camera">
-  <inertial>
-    <origin xyz="-0.017293584176189366 -2.4383966124928845e-05 0.020495008384212435" rpy="0 0 0"/>
-    <mass value="0.15033659991756945"/>
-    <inertia ixx="8.7e-05" iyy="7.2e-05" izz="0.000108" ixy="0.0" iyz="0.0" ixz="-2e-05"/>
-  </inertial>
-  <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://src_description/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://src_description/meshes/logi_camera.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
