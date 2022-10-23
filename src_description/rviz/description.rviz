@@ -65,7 +65,22 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        l_rear_wheel:
+        lf_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lr_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rf_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rr_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -118,16 +133,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 9.945969581604004
+      Distance: 1.6611332893371582
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.1763368546962738
+        Y: 0.06355516612529755
+        Z: -0.1713341623544693
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -152,5 +167,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 981
-  Y: 403
+  X: 743
+  Y: 178
