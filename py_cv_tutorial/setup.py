@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'img_pub = py_cv_tutorial.img_pub:main',
             'img_sub = py_cv_tutorial.img_sub:main',
+            'rosbag2_to_timedimg = py_cv_tutorial.rosbag2_to_timedimg:main',
         ],
     },
 )
