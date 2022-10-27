@@ -70,3 +70,19 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/foxy-devel/turtlebot3_navigation2
  'Could not import 'rosidl_typesupport_c' for package 'rmf_task_msgs'
 
  => sudo apt-get dist-upgrade
+
+ ros1 bag to ros2
+
+
+```
+git clone -b foxy https://github.com/ros2/rosbag2_bag_v2.git
+source ros1
+source ros2
+
+cbp ros1_rosbag_storage_vendor && rosfoxy
+
+sudo apt install ros-foxy-rosbag2-test-common -y
+cbp rosbag2_bag_v2_plugins && rosfoxy
+
+ros2 bag play -s rosbag_v2 
+```
