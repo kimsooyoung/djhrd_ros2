@@ -103,8 +103,8 @@ class ImageSubscriber(Node):
         edge_frame = self.hough_transform(current_frame)
 
         # Display image
-        # cv2.imshow("camera", current_frame)
-        cv2.imshow("camera", edge_frame)
+        cv2.imshow("camera", current_frame)
+        # cv2.imshow("camera", edge_frame)
 
         cv2.waitKey(1)
 

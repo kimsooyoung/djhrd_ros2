@@ -11,6 +11,8 @@ from sensor_msgs.msg import Image # Image is the message type
 from cv_bridge import CvBridge # Package to convert between ROS and OpenCV Images
 import cv2 # OpenCV library
 
+VIDEO_FILE_ROOT = "/home/kimsooyoung/djhrd_ws/rosbag/img_pub_test.mp4"
+
 class ImagePublisher(Node):
     """
     Create an ImagePublisher class, which is a subclass of the Node class.
@@ -34,7 +36,11 @@ class ImagePublisher(Node):
                 
         # Create a VideoCapture object
         # The argument '0' gets the default webcam.
-        self.cap = cv2.VideoCapture(0)
+        # self.cap = cv2.VideoCapture(0)
+
+        # Recorded Video Publish
+        self.cap = cv2.VideoCapture(VIDEO_FILE_ROOT)
+        print(self.cap.isOpened())
                 
         # Used to convert between ROS and OpenCV images
         self.br = CvBridge()
@@ -53,7 +59,7 @@ class ImagePublisher(Node):
             # Publish the image.
             # The 'cv2_to_imgmsg' method converts an OpenCV
             # image to a ROS 2 image message
-            self.publisher_.publish(self.br.cv2_to_imgmsg(frame))
+            self.publisher_.publish(self.br.cv2_to_imgmsg(frame, encoding="bgr8"))
 
         # Display the message on the console
         self.get_logger().info('Publishing video frame')
