@@ -177,17 +177,11 @@ def generate_launch_description():
                 on_exit=[src_gazebo_controller],
             )
         ),
-        # RegisterEventHandler(
-        #     event_handler=OnProcessExit(
-        #         target_action=load_velocity_controller,
-        #         on_exit=[src_odometry],
-        #     )
-        # ),
 
-        TimerAction(    
-            period=7.0,
-            actions=[rviz]
-        ),
+        # TimerAction(    
+        #     period=7.0,
+        #     actions=[rviz]
+        # ),
 
         start_gazebo_server_cmd,
         start_gazebo_client_cmd,
