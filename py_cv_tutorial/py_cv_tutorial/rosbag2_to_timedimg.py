@@ -34,8 +34,8 @@ def main(args=None):
 
     # Change below roots to your ros2 bag locations
     ROOT_DIR = "/home/kimsooyoung/djhrd_ws/quadrupped_train"
-    FILENAME = '/quadrupped_train.bag_0.db3'
-    DESCRIPTION = 'color_'
+    FILENAME = "/quadrupped_train.bag_0.db3"
+    DESCRIPTION = "color_"
 
     BAGFILE = ROOT_DIR + FILENAME
     print(BAGFILE)

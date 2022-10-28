@@ -54,7 +54,6 @@ class ImageSubscriber(Node):
 
         # This time we are defining a four sided polygon to mask
         imshape = img_frame.shape # 640 * 480
-        print(imshape)
         vertices = np.array(
             [[(0, imshape[0]), 
             (imshape[1] / 2 - 20, imshape[0] / 2), 
@@ -104,6 +103,7 @@ class ImageSubscriber(Node):
         edge_frame = self.hough_transform(current_frame)
 
         # Display image
+        # cv2.imshow("camera", current_frame)
         cv2.imshow("camera", edge_frame)
 
         cv2.waitKey(1)
